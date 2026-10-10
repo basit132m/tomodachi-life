@@ -17,11 +17,33 @@ Static site. No build step, no framework, no dependencies. Plain HTML + inlined 
 index.html          Homepage. Header + placeholder. All CSS inlined.
 assets/logo.webp    Header logo — PLACEHOLDER, must be replaced.
 assets/favicon.svg  Browser tab icon.
-.htaccess           Compression, cache headers, HTTPS + non-www canonical, 404 routing.
+.htaccess           Full version. Use only AFTER WordPress is removed.
+htaccess-merge-snippet.txt
+                    Use this while WordPress is still installed. Paste at the
+                    top of the existing .htaccess, above "# BEGIN WordPress".
 robots.txt          Allow-all + sitemap reference.
 sitemap.xml         One URL for now.
 404.html            Not-found page (still on the old palette — restyle later).
 ```
+
+## Deploying alongside WordPress
+
+WordPress does not need to be deleted. Apache loads `index.php` before
+`index.html`, which is the only reason WordPress keeps winning at `/`.
+One line flips that:
+
+```apache
+DirectoryIndex index.html index.php
+```
+
+Put it at the top of the existing `public_html/.htaccess`, above the
+`# BEGIN WordPress` block, and leave that block alone. The static homepage
+serves at `/`, WordPress stays installed, `/wp-admin/` still works, and
+deleting that one line reverts everything.
+
+Use `htaccess-merge-snippet.txt` rather than this repo's `.htaccess` while
+WordPress is present — the full file strips `www.`, which deadlocks against
+WordPress's own canonical redirect if the WP Site URL uses `www`.
 
 ## Header
 
