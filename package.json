@@ -1,0 +1,12 @@
+{
+  "name": "tomodachilife-rom",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs"
+  },
+  "devDependencies": {
+    "clean-css": "^5.3.3",
+    "terser": "^5.37.0"
+  }
+}

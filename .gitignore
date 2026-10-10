@@ -2,3 +2,7 @@
 # deploy.sh never overwrites it, so committing a placeholder here
 # would publish the wrong image.
 assets/logo.webp
+
+# Build tooling, not deployed.
+node_modules/
+package-lock.json
