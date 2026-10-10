@@ -140,7 +140,7 @@ body{
    cleanly rather than stretching. Change --hero-ratio to match
    the real artwork.
    ============================================================ */
-.hero{position:relative;padding-bottom:28px}
+.hero{position:relative}
 .hero-media{
   --hero-ratio:16/9;
   position:relative;width:100%;aspect-ratio:var(--hero-ratio);
@@ -155,48 +155,15 @@ body{
     var(--bg) 100%);
 }
 
-/* Content card lifts over the base of the image: guarantees legible
-   text whatever the artwork looks like underneath. */
-.hero-card{
-  position:relative;z-index:1;margin:-78px auto 0;
-  background:var(--surface);border:1px solid var(--line);border-radius:22px;
-  box-shadow:var(--shadow-md);padding:34px 38px 32px;max-width:760px;
-}
-.hero-kicker{
-  display:inline-block;margin:0 0 14px;padding:5px 13px;border-radius:999px;
-  background:var(--brand-soft);color:var(--brand-ink);border:1px solid var(--line);
-  font-size:.76rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;
-}
-.hero h1{
-  margin:0 0 .45em;font-size:clamp(1.9rem,4.6vw,3rem);line-height:1.1;
-  letter-spacing:-.025em;text-wrap:balance;
-}
-.hero-sub{margin:0 0 26px;font-size:clamp(1rem,1.9vw,1.14rem);color:var(--muted);max-width:52ch}
-.hero-actions{display:flex;flex-wrap:wrap;gap:12px}
-.btn{
-  display:inline-flex;align-items:center;gap:8px;border-radius:999px;
-  padding:13px 26px;font-weight:700;font-size:1rem;text-decoration:none;
-  transition:background-color .15s,transform .12s,box-shadow .15s,border-color .15s;
-}
-.btn:active{transform:translateY(0)}
-.btn-primary{background:var(--cta);color:var(--cta-text);box-shadow:var(--shadow-sm)}
-.btn-primary:hover{background:var(--cta-hover);transform:translateY(-1px);box-shadow:var(--shadow-md)}
-.btn-ghost{background:transparent;color:var(--text);border:1.5px solid var(--line-strong)}
-.btn-ghost:hover{border-color:var(--cta);color:var(--cta);transform:translateY(-1px)}
-
 @media (max-width:860px){
   .hero-media{--hero-ratio:3/2}
-  .hero-card{margin:-56px auto 0;padding:26px 24px;border-radius:18px}
 }
 @media (max-width:520px){
   .hero-media{--hero-ratio:4/3}
-  .hero-card{margin:-44px auto 0;padding:22px 20px}
-  .hero-actions{flex-direction:column;align-items:stretch}
-  .btn{justify-content:center}
 }
 @media (prefers-reduced-motion:reduce){
-  .btn,.cta{transition:none}
-  .btn:hover,.cta:hover{transform:none}
+  .cta{transition:none}
+  .cta:hover{transform:none}
 }
 
 /* ============================================================
@@ -210,7 +177,7 @@ body{
 .measure{max-width:68ch}
 .section-head{max-width:72ch;margin:0 auto 38px}
 .section-head.center{text-align:center}
-.band h2{
+.band h1,.band h2{
   font-size:clamp(1.6rem,3.6vw,2.3rem);line-height:1.18;letter-spacing:-.025em;
   margin:0 0 .5em;text-wrap:balance;
 }
@@ -319,7 +286,7 @@ body{
        TODO: headline, sub-headline and kicker below are placeholder
        copy. Replace with the real wording.
        ========================================================== -->
-  <section class="hero" aria-labelledby="hero-title">
+  <section class="hero" aria-label="Key art">
 
     <div class="hero-media">
       <picture>
@@ -339,21 +306,6 @@ body{
       </picture>
     </div>
 
-    <div class="wrap">
-      <div class="hero-card">
-        <p class="hero-kicker">Out now on Nintendo Switch</p>
-        <h1 id="hero-title">Tomodachi Life: Living the Dream</h1>
-        <p class="hero-sub">
-          Fill an island with Miis of everyone you know, then watch them make
-          friends, fall out, fall in love and develop deeply strange opinions
-          about food — none of which you get to script.
-        </p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#get-it-now">Get It Now</a>
-          <a class="btn btn-ghost" href="#about">Explore the Game</a>
-        </div>
-      </div>
-    </div>
 
   </section>
 
@@ -363,7 +315,7 @@ body{
   <section class="band" id="about" aria-labelledby="about-title">
     <div class="wrap">
       <div class="section-head center">
-        <h2 id="about-title">Become the caretaker of an island full of silliness, drama, love and other surprises</h2>
+        <h1 id="about-title">Become the caretaker of an island full of silliness, drama, love and other surprises</h1>
       </div>
       <div class="measure">
         <p class="strong">
