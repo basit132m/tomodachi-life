@@ -186,21 +186,11 @@ body{
 .band p.strong{color:var(--text);font-size:clamp(1.05rem,2vw,1.22rem);font-weight:600;line-height:1.55}
 .band p:last-child{margin-bottom:0}
 
-/* Feature grid - fills the container, reflows at every width ---------------- */
-.feature-grid{
-  display:grid;gap:18px;margin-top:8px;
-  grid-template-columns:repeat(auto-fit,minmax(290px,1fr));
-}
-.feature{
-  background:var(--surface);border:1px solid var(--line);border-radius:16px;
-  padding:24px 24px 22px;box-shadow:var(--shadow-sm);
-}
 .num{
   display:inline-grid;place-items:center;width:34px;height:34px;margin-bottom:14px;
   border-radius:10px;background:var(--brand-soft);color:var(--brand-ink);
   font-weight:800;font-size:.92rem;border:1px solid var(--line);
 }
-.feature p{margin:0;font-size:.97rem}
 
 /* Spec table ---------------------------------------------------------------- */
 .spec{
@@ -291,6 +281,67 @@ body{
   .mrow-media{border-radius:18px}
   .mrow-media--art{padding:0}
 }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.site-footer{position:relative;background:var(--surface-2);margin-top:90px;padding:0 0 30px}
+.foot-wave{
+  position:absolute;top:0;left:0;width:100%;height:46px;
+  transform:translateY(-100%);line-height:0;pointer-events:none;
+}
+.foot-wave svg{display:block;width:100%;height:100%}
+.foot-wave path{fill:var(--surface-2)}
+
+.foot-top{
+  display:grid;gap:40px;padding:50px 0 42px;
+  grid-template-columns:1.6fr 1fr 1fr;
+}
+.foot-brand img{display:block;height:52px;width:auto;max-width:230px;margin-bottom:16px}
+.foot-brand p{margin:0;color:var(--muted);font-size:.94rem;max-width:40ch}
+
+.foot-h{
+  margin:0 0 14px;font-size:.76rem;font-weight:800;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--brand-ink);
+}
+.foot-col ul{list-style:none;margin:0;padding:0}
+.foot-col li{margin:0 0 9px}
+.foot-col a{
+  color:var(--muted);text-decoration:none;font-size:.95rem;
+  border-bottom:1px solid transparent;transition:color .15s,border-color .15s;
+}
+.foot-col a:hover{color:var(--text);border-bottom-color:var(--brand)}
+
+.foot-facts dl{display:grid;grid-template-columns:auto 1fr;gap:7px 14px;margin:0;font-size:.92rem}
+.foot-facts dt{color:var(--muted)}
+.foot-facts dd{margin:0;color:var(--text);font-weight:600}
+
+.foot-bottom{
+  display:flex;flex-wrap:wrap;gap:14px 28px;align-items:center;
+  padding-top:26px;border-top:1px solid var(--line);
+}
+.foot-bottom p{margin:0;font-size:.85rem;color:var(--muted)}
+.foot-bottom .legal{max-width:62ch}
+.foot-bottom .copy{margin-left:auto}
+.to-top{
+  display:inline-flex;align-items:center;gap:7px;flex:none;
+  font-size:.85rem;font-weight:650;color:var(--brand-ink);text-decoration:none;
+  padding:7px 14px;border-radius:999px;border:1px solid var(--line);
+  background:var(--surface);transition:border-color .15s,transform .12s;
+}
+.to-top:hover{border-color:var(--brand);transform:translateY(-1px)}
+
+@media (max-width:860px){
+  .site-footer{margin-top:64px}
+  .foot-top{grid-template-columns:1fr 1fr;gap:32px;padding:38px 0 32px}
+  .foot-brand{grid-column:1 / -1}
+}
+@media (max-width:540px){
+  .foot-top{grid-template-columns:1fr}
+  .foot-bottom{flex-direction:column;align-items:flex-start}
+  .foot-bottom .copy{margin-left:0}
+}
+@media (prefers-reduced-motion:reduce){ .to-top:hover{transform:none} }
 </style>
 </head>
 <body>
@@ -299,7 +350,7 @@ body{
 <!-- ============================================================
      SITE HEADER
      ============================================================ -->
-<header class="site-header">
+<header class="site-header" id="top">
   <div class="wrap">
 
     <a class="brand" href="/" aria-label="Tomodachi Dream Life — home">
@@ -623,29 +674,65 @@ body{
         </div>
       </div>
 
-      <div class="feature-grid">
-
-
-
-
-
-
-
-
-        <article class="feature">
-          <span class="num" aria-hidden="true">7</span>
-          <h3>Shop, then make your own</h3>
-          <p>Stores across the island restock regularly, so it pays to check back. At the
-             Studio Workshop you build things from nothing: house exteriors, ground tiles,
-             clothing, food, even pets. Anything you make can be traded with other players
-             over local wireless.</p>
-        </article>
-
-      </div>
     </div>
   </section>
 
 </main>
+
+<footer class="site-footer">
+  <div class="foot-wave" aria-hidden="true">
+    <svg viewBox="0 0 1440 46" preserveAspectRatio="none">
+      <path d="M0,46 L0,20 C180,2 300,38 480,28 C660,18 780,0 960,6 C1140,12 1290,40 1440,30 L1440,46 Z"/>
+    </svg>
+  </div>
+
+  <div class="wrap">
+    <div class="foot-top">
+
+      <div class="foot-brand">
+        <img src="/assets/logo.webp" alt="Tomodachi Dream Life" height="52" loading="lazy" decoding="async">
+        <p>An independent guide to Tomodachi Life: Living the Dream &mdash; the island,
+           the Miis, and everything they get up to when you are not looking.</p>
+      </div>
+
+      <nav class="foot-col" aria-label="Footer">
+        <p class="foot-h">Explore</p>
+        <ul>
+          <li><a href="#top">Home</a></li>
+          <li><a href="#about">About the Game</a></li>
+          <li><a href="#details">Game details</a></li>
+          <li><a href="#features">Your Mii characters</a></li>
+        </ul>
+      </nav>
+
+      <div class="foot-col foot-facts">
+        <p class="foot-h">At a glance</p>
+        <dl>
+          <dt>Released</dt><dd><time datetime="2026-04-16">16 Apr 2026</time></dd>
+          <dt>System</dt><dd>Nintendo Switch</dd>
+          <dt>Publisher</dt><dd>Nintendo</dd>
+          <dt>Rating</dt><dd>ESRB Everyone</dd>
+        </dl>
+      </div>
+
+    </div>
+
+    <div class="foot-bottom">
+      <p class="legal">
+        Tomodachi Life, Mii, Nintendo Switch and Nintendo are trademarks of Nintendo.
+        This site is unofficial, unaffiliated with and unendorsed by Nintendo.
+      </p>
+      <a class="to-top" href="#top">
+        <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 10V2M2.5 5.5 6 2l3.5 3.5"/>
+        </svg>
+        Back to top
+      </a>
+      <p class="copy">&copy; 2026 tomodachilife-rom.com</p>
+    </div>
+  </div>
+</footer>
 
 <script>
 /* Progressive enhancement: without JS the nav stays visible and usable. */
