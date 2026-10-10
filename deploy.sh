@@ -86,13 +86,17 @@ for f in index.html 404.html robots.txt sitemap.xml; do
   fi
 done
 
-# Copy assets, but NEVER overwrite the real logo with the repo's placeholder.
+# Copy assets, but NEVER overwrite the real logo or favicon with a placeholder.
 for f in "$REPO_DIR"/assets/*; do
   name="$(basename "$f")"
-  if [ "$name" = "logo.webp" ] && [ -f "$WEB_DIR/assets/logo.webp" ]; then
-    echo "    assets/logo.webp  (skipped - keeping the one already on the server)"
-    continue
-  fi
+  case "$name" in
+    logo.webp|favicon.webp)
+      if [ -f "$WEB_DIR/assets/$name" ]; then
+        echo "    assets/$name  (skipped - keeping the one already on the server)"
+        continue
+      fi
+      ;;
+  esac
   cp "$f" "$WEB_DIR/assets/$name"
   echo "    assets/$name"
 done

@@ -8,7 +8,7 @@
 <link rel="canonical" href="https://tomodachilife-rom.com/">
 <meta name="theme-color" content="#ffd43b" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#14161c" media="(prefers-color-scheme: dark)">
-<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/favicon.webp" type="image/webp">
 <style>
 /* ============================================================
    TOKENS
@@ -18,7 +18,7 @@
   --line:#ece6d6;--line-strong:#ddd4bd;
   --brand:#ff9f1c;--brand-ink:#9a5600;--brand-soft:#fff3dd;
   --cta:#ff6b35;--cta-hover:#ef5a24;--cta-text:#fff;
-  --header-h:68px;--maxw:1140px;--radius:12px;
+  --header-h:76px;--logo-h:52px;--maxw:1140px;--radius:12px;
   --shadow-sm:0 1px 2px rgba(27,29,38,.06);
   --shadow-md:0 4px 16px rgba(27,29,38,.10);
 }
@@ -69,8 +69,7 @@ body{
 /* Brand ----------------------------------------------------- */
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);
   flex:0 0 auto;margin-right:auto;border-radius:8px}
-.brand img{display:block;height:40px;width:auto;max-width:210px;object-fit:contain}
-@media (max-width:420px){.brand img{height:34px;max-width:150px}}
+.brand img{display:block;height:var(--logo-h);width:auto;max-width:280px;object-fit:contain}
 
 /* Primary nav ----------------------------------------------- */
 .nav ul{display:flex;align-items:center;gap:2px;list-style:none;margin:0;padding:0}
@@ -108,7 +107,7 @@ body{
 
 /* --- Mobile layout ----------------------------------------- */
 @media (max-width:860px){
-  :root{--header-h:62px}
+  :root{--header-h:68px;--logo-h:46px}
   .site-header .wrap{gap:10px}
   .nav-toggle{display:flex}
   .nav{
@@ -124,6 +123,8 @@ body{
   .cta{padding:9px 16px;font-size:.88rem}
 }
 @media (max-width:420px){
+  :root{--logo-h:38px}
+  .brand img{max-width:170px}
   .cta .cta-label-long{display:none}
 }
 
@@ -147,7 +148,7 @@ body{
   <div class="wrap">
 
     <a class="brand" href="/" aria-label="Tomodachi Dream Life — home">
-      <img src="/assets/logo.webp" alt="Tomodachi Dream Life" height="40" decoding="async">
+      <img src="/assets/logo.webp" alt="Tomodachi Dream Life" height="52" decoding="async">
     </a>
 
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
