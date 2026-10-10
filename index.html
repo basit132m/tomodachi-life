@@ -3,406 +3,224 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Tomodachi Life ROM: How to Play on PC &amp; Android (2026 Guide)</title>
-<meta name="description" content="Play Tomodachi Life on PC, Mac or Android in 2026: back up your own cartridge, set up the Azahar 3DS emulator, and fix the common crashes.">
+<title>Tomodachi Dream Life</title>
+<meta name="description" content="Tomodachi Dream Life — your guide to the Tomodachi Life world.">
 <link rel="canonical" href="https://tomodachilife-rom.com/">
-<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
-<meta name="theme-color" content="#2fbf71" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0f1613" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#ffd43b" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14161c" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-<meta property="og:type" content="article">
-<meta property="og:site_name" content="Tomodachi Life ROM">
-<meta property="og:title" content="Tomodachi Life ROM: How to Play on PC &amp; Android (2026 Guide)">
-<meta property="og:description" content="Dump your own cartridge, set up Azahar, and get Tomodachi Life running at full speed. Updated for 2026.">
-<meta property="og:url" content="https://tomodachilife-rom.com/">
-<meta property="og:locale" content="en_US">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Tomodachi Life ROM: How to Play on PC &amp; Android (2026)">
-<meta name="twitter:description" content="Dump your own cartridge, set up Azahar, and get Tomodachi Life running at full speed.">
 <style>
+/* ============================================================
+   TOKENS
+   ============================================================ */
 :root{
-  --bg:#f7faf8;--surface:#fff;--surface-2:#eef5f1;--text:#15211c;--muted:#56665f;
-  --line:#dce7e1;--brand:#1e8f52;--brand-ink:#0d5c33;--brand-soft:#e3f5ea;
-  --accent:#f08a24;--accent-soft:#fdf0e1;--warn:#b4451b;--warn-soft:#fdeee7;
-  --radius:14px;--maxw:860px;--shadow:0 1px 2px rgba(16,40,30,.05),0 6px 20px rgba(16,40,30,.05);
+  --bg:#fffdf7;--surface:#fff;--surface-2:#fff8e6;--text:#1b1d26;--muted:#5c6070;
+  --line:#ece6d6;--line-strong:#ddd4bd;
+  --brand:#ff9f1c;--brand-ink:#9a5600;--brand-soft:#fff3dd;
+  --cta:#ff6b35;--cta-hover:#ef5a24;--cta-text:#fff;
+  --header-h:68px;--maxw:1140px;--radius:12px;
+  --shadow-sm:0 1px 2px rgba(27,29,38,.06);
+  --shadow-md:0 4px 16px rgba(27,29,38,.10);
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#0f1613;--surface:#162220;--surface-2:#1d2b27;--text:#e9f1ed;--muted:#a3b5ad;
-  --line:#283934;--brand:#49cc80;--brand-ink:#9ce6b8;--brand-soft:#15302222;
-  --accent:#ffa94d;--accent-soft:#2a2016;--warn:#ff9a76;--warn-soft:#2d1b14;
-  --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 20px rgba(0,0,0,.25);
+  --bg:#14161c;--surface:#1b1e26;--surface-2:#232733;--text:#f0f1f5;--muted:#a6abbd;
+  --line:#2c313d;--line-strong:#3b4150;
+  --brand:#ffc14d;--brand-ink:#ffd98a;--brand-soft:#2a2316;
+  --cta:#ff7847;--cta-hover:#ff8d63;--cta-text:#1b1d26;
+  --shadow-sm:0 1px 2px rgba(0,0,0,.4);
+  --shadow-md:0 4px 16px rgba(0,0,0,.35);
 }}
 :root[data-theme="dark"]{
-  --bg:#0f1613;--surface:#162220;--surface-2:#1d2b27;--text:#e9f1ed;--muted:#a3b5ad;
-  --line:#283934;--brand:#49cc80;--brand-ink:#9ce6b8;--brand-soft:#153022;
-  --accent:#ffa94d;--accent-soft:#2a2016;--warn:#ff9a76;--warn-soft:#2d1b14;
+  --bg:#14161c;--surface:#1b1e26;--surface-2:#232733;--text:#f0f1f5;--muted:#a6abbd;
+  --line:#2c313d;--line-strong:#3b4150;
+  --brand:#ffc14d;--brand-ink:#ffd98a;--brand-soft:#2a2316;
+  --cta:#ff7847;--cta-hover:#ff8d63;--cta-text:#1b1d26;
 }
+
+/* ============================================================
+   BASE
+   ============================================================ */
 *,*::before,*::after{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:calc(var(--header-h) + 12px)}
 body{
   margin:0;background:var(--bg);color:var(--text);
-  font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-family:ui-rounded,"SF Pro Rounded",ui-sans-serif,system-ui,-apple-system,"Segoe UI",
+    Roboto,"Helvetica Neue",Arial,sans-serif;
   font-size:17px;line-height:1.65;text-wrap:pretty;
 }
-.wrap{max-width:var(--maxw);margin:0 auto;padding:0 16px}
-a{color:var(--brand-ink);text-decoration:underline;text-underline-offset:2px;text-decoration-thickness:1px}
-a:hover{text-decoration-thickness:2px}
-:focus-visible{outline:3px solid var(--brand);outline-offset:2px;border-radius:4px}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+:focus-visible{outline:3px solid var(--cta);outline-offset:3px;border-radius:6px}
 .skip{position:absolute;left:-9999px}
-.skip:focus{left:8px;top:8px;z-index:9;background:var(--surface);padding:10px 14px;border-radius:8px;box-shadow:var(--shadow)}
-h1,h2,h3{line-height:1.2;text-wrap:balance;margin:0 0 .5em}
-h1{font-size:clamp(1.85rem,5.2vw,2.6rem);letter-spacing:-.02em}
-h2{font-size:clamp(1.35rem,3.6vw,1.7rem);letter-spacing:-.015em;margin-top:2.4em}
-h3{font-size:1.08rem;margin-top:1.7em}
-p,ul,ol,table{margin:0 0 1.05em}
-ul,ol{padding-left:1.25em}li{margin:.3em 0}
-header.site{border-bottom:1px solid var(--line);background:var(--surface);position:sticky;top:0;z-index:5}
-header.site .wrap{display:flex;align-items:center;gap:10px;height:56px}
-.logo{display:flex;align-items:center;gap:9px;font-weight:700;text-decoration:none;color:var(--text);font-size:.98rem}
-.logo svg{display:block;flex:none}
-nav.top{margin-left:auto;display:flex;gap:4px;flex-wrap:wrap}
-nav.top a{font-size:.86rem;color:var(--muted);text-decoration:none;padding:6px 9px;border-radius:8px}
-nav.top a:hover{background:var(--surface-2);color:var(--text)}
-@media (max-width:620px){nav.top a:nth-child(n+3){display:none}}
-.hero{padding:40px 0 8px}
-.eyebrow{display:inline-block;font-size:.76rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;
-  color:var(--brand-ink);background:var(--brand-soft);border:1px solid var(--line);padding:4px 10px;border-radius:999px;margin-bottom:14px}
-.lede{font-size:1.1rem;color:var(--muted);max-width:66ch}
-.meta{font-size:.84rem;color:var(--muted);margin:14px 0 0}
-.answer{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--brand);
-  border-radius:var(--radius);padding:18px 20px;margin:26px 0 0;box-shadow:var(--shadow)}
-.answer h2{font-size:.78rem;text-transform:uppercase;letter-spacing:.09em;color:var(--brand-ink);margin:0 0 .6em}
-.answer p:last-child,.answer ol:last-child{margin-bottom:0}
-.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));margin:0 0 1.1em}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow)}
-.card h3{margin:0 0 .35em;font-size:1rem}
-.card p{margin:0;font-size:.92rem;color:var(--muted)}
-.steps{counter-reset:s;list-style:none;padding:0;margin:0}
-.steps>li{counter-increment:s;position:relative;padding:0 0 4px 46px;margin:0 0 20px}
-.steps>li::before{content:counter(s);position:absolute;left:0;top:-1px;width:32px;height:32px;
-  display:grid;place-items:center;border-radius:50%;background:var(--brand);color:#fff;font-weight:700;font-size:.95rem}
-.steps h3{margin:2px 0 .4em}
-table{width:100%;border-collapse:collapse;font-size:.93rem}
-caption{text-align:left;font-size:.86rem;color:var(--muted);padding-bottom:8px}
-th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
-thead th{background:var(--surface-2);font-size:.8rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
-tbody tr:last-child td{border-bottom:0}
-.tbl{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);margin-bottom:1.1em}
-@media (max-width:600px){
-  .tbl{overflow-x:auto;-webkit-overflow-scrolling:touch}
-  .tbl table{min-width:480px}
-  .tbl caption{padding-left:12px}
-  th,td{padding:8px 10px}
+.skip:focus{left:12px;top:12px;z-index:60;background:var(--surface);color:var(--text);
+  padding:10px 16px;border-radius:8px;box-shadow:var(--shadow-md);text-decoration:none}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.site-header{
+  position:sticky;top:0;z-index:50;
+  background:color-mix(in srgb,var(--surface) 88%,transparent);
+  -webkit-backdrop-filter:saturate(1.6) blur(12px);backdrop-filter:saturate(1.6) blur(12px);
+  border-bottom:1px solid var(--line);
 }
-.note{border-radius:var(--radius);padding:15px 18px;font-size:.93rem;margin:0 0 1.1em;border:1px solid var(--line)}
-.note.legal{background:var(--warn-soft);border-left:4px solid var(--warn)}
-.note.tip{background:var(--accent-soft);border-left:4px solid var(--accent)}
-.note strong{display:block;margin-bottom:.25em}
-.note :last-child{margin-bottom:0}
-details{background:var(--surface);border:1px solid var(--line);border-radius:12px;margin:0 0 9px;box-shadow:var(--shadow)}
-summary{cursor:pointer;padding:14px 18px;font-weight:650;list-style:none;display:flex;gap:10px;align-items:flex-start}
-summary::-webkit-details-marker{display:none}
-summary::after{content:"+";margin-left:auto;color:var(--brand);font-weight:700;font-size:1.3rem;line-height:1}
-details[open] summary::after{content:"\2212"}
-details .body{padding:0 18px 15px;color:var(--muted);font-size:.95rem}
-details .body :last-child{margin-bottom:0}
-code{background:var(--surface-2);border:1px solid var(--line);border-radius:5px;padding:1px 5px;font-size:.87em;
-  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
-footer.site{border-top:1px solid var(--line);margin-top:56px;padding:28px 0 40px;background:var(--surface);
-  font-size:.88rem;color:var(--muted)}
-footer.site a{color:var(--muted)}
-footer.site p{margin:0 0 .7em}
-hr{border:0;border-top:1px solid var(--line);margin:2.4em 0}
+@supports not (backdrop-filter:blur(1px)){.site-header{background:var(--surface)}}
+.site-header .wrap{display:flex;align-items:center;gap:14px;height:var(--header-h)}
+
+/* Brand ----------------------------------------------------- */
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);
+  flex:0 0 auto;margin-right:auto;border-radius:8px}
+.brand img{display:block;height:40px;width:auto;max-width:210px;object-fit:contain}
+@media (max-width:420px){.brand img{height:34px;max-width:150px}}
+
+/* Primary nav ----------------------------------------------- */
+.nav ul{display:flex;align-items:center;gap:2px;list-style:none;margin:0;padding:0}
+.nav a{
+  display:block;padding:9px 13px;border-radius:9px;text-decoration:none;
+  color:var(--muted);font-size:.94rem;font-weight:600;white-space:nowrap;
+  transition:color .15s,background-color .15s;
+}
+.nav a:hover{color:var(--text);background:var(--surface-2)}
+.nav a[aria-current="page"]{color:var(--brand-ink);background:var(--brand-soft)}
+
+/* CTA -------------------------------------------------------- */
+.cta{
+  flex:0 0 auto;display:inline-flex;align-items:center;gap:7px;
+  background:var(--cta);color:var(--cta-text);font-weight:700;font-size:.94rem;
+  padding:10px 20px;border-radius:999px;text-decoration:none;white-space:nowrap;
+  box-shadow:var(--shadow-sm);transition:background-color .15s,transform .12s,box-shadow .15s;
+}
+.cta:hover{background:var(--cta-hover);transform:translateY(-1px);box-shadow:var(--shadow-md)}
+.cta:active{transform:translateY(0)}
+.cta svg{flex:none}
+
+/* Hamburger (hidden on desktop, shown via JS/CSS on mobile) --- */
+.nav-toggle{
+  display:none;flex:0 0 auto;width:42px;height:42px;padding:0;
+  align-items:center;justify-content:center;
+  background:transparent;border:1px solid var(--line-strong);border-radius:10px;
+  color:var(--text);cursor:pointer;
+}
+.nav-toggle:hover{background:var(--surface-2)}
+.nav-toggle .bar{transition:transform .2s ease,opacity .15s ease;transform-origin:center}
+.nav-toggle[aria-expanded="true"] .bar-1{transform:translateY(6px) rotate(45deg)}
+.nav-toggle[aria-expanded="true"] .bar-2{opacity:0}
+.nav-toggle[aria-expanded="true"] .bar-3{transform:translateY(-6px) rotate(-45deg)}
+
+/* --- Mobile layout ----------------------------------------- */
+@media (max-width:860px){
+  :root{--header-h:62px}
+  .site-header .wrap{gap:10px}
+  .nav-toggle{display:flex}
+  .nav{
+    position:absolute;left:0;right:0;top:var(--header-h);
+    background:var(--surface);border-bottom:1px solid var(--line);
+    box-shadow:var(--shadow-md);padding:8px 20px 16px;
+  }
+  .nav ul{flex-direction:column;align-items:stretch;gap:2px}
+  .nav a{padding:12px 14px;font-size:1rem}
+  /* Closed state applies ONLY when JS is present (html.js), so the menu
+     stays reachable with JavaScript disabled. */
+  .js .nav[hidden]{display:none}
+  .cta{padding:9px 16px;font-size:.88rem}
+}
+@media (max-width:420px){
+  .cta .cta-label-long{display:none}
+}
+
+/* ============================================================
+   PLACEHOLDER (hero + rest of page come next)
+   ============================================================ */
+.placeholder{padding:72px 0;text-align:center;color:var(--muted)}
+.placeholder h1{font-size:clamp(1.6rem,4.5vw,2.2rem);color:var(--text);margin:0 0 .4em;letter-spacing:-.02em}
+.placeholder p{margin:0 auto;max-width:48ch}
+.placeholder .box{margin-top:32px;border:2px dashed var(--line-strong);border-radius:16px;
+  padding:56px 24px;background:var(--surface-2);font-weight:600}
 </style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
-<header class="site">
+<!-- ============================================================
+     SITE HEADER
+     ============================================================ -->
+<header class="site-header">
   <div class="wrap">
-    <a class="logo" href="/">
-      <svg width="26" height="26" viewBox="0 0 64 64" aria-hidden="true">
-        <rect width="64" height="64" rx="14" fill="#2fbf71"/>
-        <circle cx="32" cy="25" r="11" fill="#fff"/>
-        <circle cx="28" cy="24" r="2.4" fill="#1b2a22"/><circle cx="36" cy="24" r="2.4" fill="#1b2a22"/>
-        <path d="M27 30q5 4 10 0" stroke="#1b2a22" stroke-width="2.2" fill="none" stroke-linecap="round"/>
-        <path d="M15 56q4-16 17-16t17 16z" fill="#fff"/>
-      </svg>
-      Tomodachi Life ROM
+
+    <a class="brand" href="/" aria-label="Tomodachi Dream Life — home">
+      <img src="/assets/logo.webp" alt="Tomodachi Dream Life" height="40" decoding="async">
     </a>
-    <nav class="top" aria-label="Page sections">
-      <a href="#setup">Setup</a>
-      <a href="#settings">Settings</a>
-      <a href="#fixes">Fixes</a>
-      <a href="#versions">Versions</a>
-      <a href="#faq">FAQ</a>
+
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
+      <span class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Menu</span>
+      <svg width="22" height="18" viewBox="0 0 22 18" aria-hidden="true" fill="none"
+           stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+        <line class="bar bar-1" x1="1" y1="3"  x2="21" y2="3"/>
+        <line class="bar bar-2" x1="1" y1="9"  x2="21" y2="9"/>
+        <line class="bar bar-3" x1="1" y1="15" x2="21" y2="15"/>
+      </svg>
+    </button>
+
+    <nav id="primary-nav" class="nav" aria-label="Primary">
+      <ul>
+        <li><a href="/" aria-current="page">Home</a></li>
+        <li><a href="#about">About the Game</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#guides">Guides</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
     </nav>
+
+    <a class="cta" href="#get-it-now">
+      <svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true" fill="currentColor">
+        <path d="M8 0 9.9 5.2 15.5 5.4 11.1 8.9 12.6 14.3 8 11.1 3.4 14.3 4.9 8.9.5 5.4 6.1 5.2z"/>
+      </svg>
+      <span>Get It<span class="cta-label-long"> Now</span></span>
+    </a>
+
   </div>
 </header>
 
 <main id="main">
-<div class="wrap">
-
-<div class="hero">
-  <span class="eyebrow">Updated October 2026</span>
-  <h1>Tomodachi Life ROM: how to play it on PC, Mac and Android</h1>
-  <p class="lede">Tomodachi Life never got a PC release, so playing it outside a Nintendo 3DS means emulation. This guide covers the whole chain &mdash; the emulator, getting a legal copy of the game file from your own cartridge, the settings that actually matter, and the bugs people hit most.</p>
-  <p class="meta">Reading time ~8 minutes &middot; No downloads hosted on this site</p>
-</div>
-
-<div class="answer">
-  <h2>Short answer</h2>
-  <ol>
-    <li>Install <strong>Azahar</strong>, the maintained successor to Citra (Windows, macOS, Linux, Android).</li>
-    <li><strong>Dump your own Tomodachi Life cartridge</strong> to a <code>.3ds</code> or <code>.cia</code> file using GodMode9 on a modded 3DS. This is the only route we cover &mdash; downloading the game from a ROM site is copyright infringement.</li>
-    <li>Open the file in Azahar, turn on <strong>hardware shaders</strong> and leave the resolution at 1&times;&ndash;2&times;.</li>
-  </ol>
-  <p>On a modern laptop or a mid-range phone the game runs at full speed. It is a 2D-heavy title, so it is one of the kinder 3DS games to emulate.</p>
-</div>
-
-<div class="note legal">
-  <strong>Before you go further</strong>
-  <p>Emulators are legal software. Game files are not free to pass around: downloading a Tomodachi Life ROM you did not pay for is piracy in essentially every country, and sites that host those files get taken down. This page explains how to create a backup from a cartridge you own, which is the defensible path. We host no game files and link to none.</p>
-</div>
-
-<section id="need">
-<h2>What you need</h2>
-<div class="grid">
-  <div class="card">
-    <h3>An emulator</h3>
-    <p>Azahar, free and open source. It replaced Citra after Citra shut down in 2024.</p>
+  <div class="wrap placeholder">
+    <h1>Header is in place</h1>
+    <p>The hero banner goes here next, then the rest of the homepage, section by section.</p>
+    <div class="box">Hero banner — coming next</div>
   </div>
-  <div class="card">
-    <h3>Your own game file</h3>
-    <p>A <code>.3ds</code>, <code>.cci</code> or <code>.cia</code> dump of the cartridge or eShop copy you own.</p>
-  </div>
-  <div class="card">
-    <h3>A modded 3DS (once)</h3>
-    <p>Needed only to make the dump. After that you never touch the console again.</p>
-  </div>
-</div>
-<p>You do <em>not</em> need a BIOS file. Unlike some consoles, a 3DS emulator runs most games without system firmware, though dumping your console's shared fonts and system archives fixes a handful of edge cases.</p>
-</section>
-
-<section id="setup">
-<h2>Setting it up, step by step</h2>
-
-<ol class="steps">
-<li>
-  <h3>Install Azahar</h3>
-  <p>Grab the current build from the project's official releases page. On Windows pick the <code>.zip</code> for your GPU generation and extract it anywhere &mdash; it needs no installer. On Android, install from Google Play or the GitHub APK; Android 10 or newer on a 64-bit device is required. macOS and Linux builds are published alongside.</p>
-  <p>Avoid the ad-covered "Citra download" mirrors still floating around. Citra is discontinued; those pages serve old binaries at best and bundled adware at worst.</p>
-</li>
-<li>
-  <h3>Dump Tomodachi Life from your cartridge</h3>
-  <p>On a 3DS running custom firmware, with GodMode9 installed:</p>
-  <ol>
-    <li>Insert the Tomodachi Life cartridge and boot GodMode9 (hold <code>Start</code> at power-on).</li>
-    <li>Open <code>[C:] GAMECART</code>.</li>
-    <li>Select the <code>.3ds</code> file and choose <strong>Copy to 0:/gm9/out</strong>. A trimmed dump saves space; an untrimmed one is byte-identical to the cartridge.</li>
-    <li>Power off, move the SD card to your computer, and copy the file out of <code>/gm9/out/</code>.</li>
-  </ol>
-  <p>If you bought the game on the eShop instead, dump the installed title to <code>.cia</code> from GodMode9's <code>[A:] SYSNAND SD</code> &rarr; title folder, or use a title manager.</p>
-</li>
-<li>
-  <h3>Point Azahar at the file</h3>
-  <p>First launch, Azahar asks for a games directory. Give it the folder holding your dump and the game appears in the list. Double-click to play. On Android use <strong>Add Games</strong> and pick the folder &mdash; keep it somewhere Android lets apps read, such as <code>Documents</code>, not an SD card root with restricted permissions.</p>
-</li>
-<li>
-  <h3>Set the controls you will actually use</h3>
-  <p>Tomodachi Life is almost entirely a touchscreen game. On desktop the mouse <em>is</em> the stylus, so you mostly need a key for <code>A</code> and <code>B</code>. On a phone it plays natively. A controller adds little here.</p>
-</li>
-<li>
-  <h3>Back up your save</h3>
-  <p>Your island lives in Azahar's save directory, keyed to the title ID. Copy that folder somewhere safe before any emulator upgrade. Islands represent dozens of hours and there is no cloud backup.</p>
-</li>
-</ol>
-
-<div class="note tip">
-  <strong>Transferring an existing island</strong>
-  <p>You can bring a save from the real console across: dump the save with JKSM or Checkpoint on the 3DS, then drop it into the matching folder in Azahar's save data path. Match the region of the dump to the region of the game file or the game will reject it.</p>
-</div>
-</section>
-
-<section id="settings">
-<h2>Best Azahar settings for Tomodachi Life</h2>
-<p>This game is light on 3D geometry and heavy on 2D sprites and audio, so the defaults are already close to right. Four settings are worth changing:</p>
-
-<div class="tbl">
-<table>
-  <caption>Recommended configuration &mdash; Azahar, desktop and Android</caption>
-  <thead><tr><th>Setting</th><th>Value</th><th>Why</th></tr></thead>
-  <tbody>
-    <tr><td>Graphics API</td><td>Vulkan (OpenGL on older Intel GPUs)</td><td>Lower driver overhead; far better on Android.</td></tr>
-    <tr><td>Hardware shaders</td><td>On, with "accurate multiplication" off</td><td>The single biggest speed win. Accurate multiplication costs frames and fixes nothing in this game.</td></tr>
-    <tr><td>Internal resolution</td><td>1&times; or 2&times;</td><td>The art is low-resolution 2D. Above 2&times; you gain almost nothing and lose frames.</td></tr>
-    <tr><td>Frame limit</td><td>100%</td><td>Apartment and shop animations are timed to the frame rate; uncapping desynchronises audio.</td></tr>
-    <tr><td>Layout</td><td>Large screen, small top</td><td>Nearly all interaction is on the bottom screen.</td></tr>
-    <tr><td>Audio stretching</td><td>On</td><td>Prevents crackle when the frame rate dips briefly.</td></tr>
-  </tbody>
-</table>
-</div>
-<p>Leave texture filtering and post-processing off. They smear the deliberately crisp pixel art and the Mii faces look wrong.</p>
-</section>
-
-<section id="fixes">
-<h2>Common problems and fixes</h2>
-<div class="tbl">
-<table>
-  <caption>Issues reported most often with Tomodachi Life under emulation</caption>
-  <thead><tr><th>Symptom</th><th>Cause and fix</th></tr></thead>
-  <tbody>
-    <tr><td>Black screen on boot, no error</td><td>Usually a decrypted-wrongly or incomplete dump. Re-dump the cartridge untrimmed. A <code>.3ds</code> from an unknown source is also the usual culprit.</td></tr>
-    <tr><td>"Encrypted ROM" or "Unable to find decryption keys"</td><td>The dump is still encrypted. Dump via GodMode9's GAMECART option, which decrypts as it copies, or dump your console's keys and place them in Azahar's <code>sysdata</code> folder.</td></tr>
-    <tr><td>Mii faces render as flat colour blocks</td><td>Hardware shaders disabled, or a very old GPU driver. Enable hardware shaders and update the driver.</td></tr>
-    <tr><td>Microphone features do nothing</td><td>Mic input defaults to off. Set audio input to "Real device" and grant the OS microphone permission.</td></tr>
-    <tr><td>Camera-based Mii creation fails</td><td>Camera emulation is incomplete. Build Miis by hand or import a QR code image instead.</td></tr>
-    <tr><td>Save file will not load after an update</td><td>Save paths changed between Citra and Azahar. Copy the old folder into the new save directory under the same title ID.</td></tr>
-    <tr><td>Stutter every few seconds on first play</td><td>Shader cache warming up. It settles after 10&ndash;15 minutes of play; keep the cache between sessions.</td></tr>
-    <tr><td>Game runs at 100% but feels slow</td><td>That is the game. Tomodachi Life is deliberately paced around real-time events. Nothing is broken.</td></tr>
-  </tbody>
-</table>
-</div>
-</section>
-
-<section id="versions">
-<h2>Which Tomodachi game are you actually looking for?</h2>
-<p>Three different games share the name, and search results mix them up constantly. The ROM you want depends on which one you mean.</p>
-
-<div class="tbl">
-<table>
-  <caption>The Tomodachi series, and whether emulation applies</caption>
-  <thead><tr><th>Game</th><th>Platform</th><th>Notes</th></tr></thead>
-  <tbody>
-    <tr>
-      <td><strong>Tomodachi Life</strong></td>
-      <td>Nintendo 3DS, 2014</td>
-      <td>The Western release. English, French, German, Italian and Spanish. This is what almost everyone means by "Tomodachi Life ROM", and it is the game this guide covers.</td>
-    </tr>
-    <tr>
-      <td><strong>Tomodachi Collection: New Life</strong><br>(&#12488;&#12514;&#12480;&#12481;&#12467;&#12524;&#12463;&#12471;&#12519;&#12531; &#26032;&#29983;&#27963;)</td>
-      <td>Nintendo 3DS, 2013</td>
-      <td>The original Japanese version of the same game. Only worth dumping if you want the Japanese text or the Japanese-only songs.</td>
-    </tr>
-    <tr>
-      <td><strong>Tomodachi Life: Living the Dream</strong></td>
-      <td>Nintendo Switch, April 2026</td>
-      <td>The brand-new sequel, and the reason searches for this series jumped in 2026. It is a current-generation retail game &mdash; buy it rather than hunting for a file. Switch emulation of a 2026 title is neither mature nor legal to feed with pirated copies.</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-<p>There is also <strong>Tomodachi Collection</strong> (Nintendo DS, 2009), the Japan-only first entry, which runs in any DS emulator and has a well-known fan translation patch.</p>
-</section>
-
-<section id="about">
-<h2>What Tomodachi Life actually is</h2>
-<p>It is a life simulator built around Miis. You populate an apartment block with versions of your friends, family and whoever else you feel like, then watch them form friendships, fall out, start relationships, marry, have children and develop oddly specific food preferences. You do not control them directly. You feed them, dress them, settle their arguments and hand out hats, and the comedy comes from how badly your characters behave when left alone.</p>
-<p>The appeal is the voice synthesiser. Every Mii talks, with an adjustable pitch and speed, and hearing your own name read out in that flat synthetic drawl is most of the joke. It sold more than six million copies and remains one of the most-played 3DS games a decade on.</p>
-
-<div class="tbl">
-<table>
-  <caption>Tomodachi Life at a glance</caption>
-  <thead><tr><th>Detail</th><th></th></tr></thead>
-  <tbody>
-    <tr><td>Developer / publisher</td><td>Nintendo SPD / Nintendo</td></tr>
-    <tr><td>Release</td><td>Japan April 2013 (as Tomodachi Collection: New Life); North America and Europe June 2014</td></tr>
-    <tr><td>Platform</td><td>Nintendo 3DS family</td></tr>
-    <tr><td>Genre</td><td>Life simulation</td></tr>
-    <tr><td>Players</td><td>Single player, with StreetPass and QR code Mii sharing</td></tr>
-    <tr><td>Typical dump size</td><td>Around 400&nbsp;MB untrimmed</td></tr>
-    <tr><td>Emulation difficulty</td><td>Low &mdash; runs well on modest hardware</td></tr>
-  </tbody>
-</table>
-</div>
-</section>
-
-<section id="faq">
-<h2>Frequently asked questions</h2>
-
-<details>
-  <summary>Is downloading a Tomodachi Life ROM legal?</summary>
-  <div class="body"><p>No. Tomodachi Life is still under copyright and still sold second-hand, and Nintendo has never authorised free distribution. Downloading a copy you did not buy is infringement regardless of whether you own the cartridge, in most jurisdictions. Creating your own backup from a cartridge you own is the defensible route, and it is the only one this site documents.</p></div>
-</details>
-
-<details>
-  <summary>Are 3DS emulators like Azahar legal?</summary>
-  <div class="body"><p>Yes. Emulators are clean-room software and courts have repeatedly found them lawful. What gets projects shut down is shipping copyrighted firmware or encouraging piracy &mdash; which is why Azahar ships no Nintendo code and asks you to supply your own game files.</p></div>
-</details>
-
-<details>
-  <summary>Can I play Tomodachi Life on Android?</summary>
-  <div class="body"><p>Yes, and it is one of the better experiences, because the game was designed for a touchscreen. Azahar's Android build handles it at full speed on most phones from the last five years. You need Android 10 or newer and a 64-bit device.</p></div>
-</details>
-
-<details>
-  <summary>Do I need a BIOS or system files?</summary>
-  <div class="body"><p>Not for this game. 3DS emulation works without system firmware for most titles. Dumping your console's shared font and system archives improves compatibility in a few games, but Tomodachi Life boots without them.</p></div>
-</details>
-
-<details>
-  <summary>Why is Citra gone, and is Azahar safe to use?</summary>
-  <div class="body"><p>Citra was discontinued in March 2024 when its parent organisation settled a lawsuit over the Switch emulator Yuzu. The code was open source, so the community continued it: Lime3DS and a maintained Citra fork merged into Azahar, which has shipped stable releases since March 2025 and is actively developed. Download it only from its official releases page &mdash; the old mirrors are not trustworthy.</p></div>
-</details>
-
-<details>
-  <summary>Will my real 3DS save work in the emulator?</summary>
-  <div class="body"><p>Yes. Dump it with JKSM or Checkpoint on the console and copy it into Azahar's save directory under the matching title ID. The game region of the save and of the dump must match.</p></div>
-</details>
-
-<details>
-  <summary>Can I still use QR codes to share Miis?</summary>
-  <div class="body"><p>Mii QR codes work if you feed the image to the emulator rather than a camera. Camera emulation is incomplete, so point Azahar's camera input at an image file containing the QR code. StreetPass does not work, since it depends on console hardware.</p></div>
-</details>
-
-<details>
-  <summary>How much space and what hardware do I need?</summary>
-  <div class="body"><p>Around 400&nbsp;MB for the game plus a few hundred megabytes for the emulator and caches. Any CPU from roughly 2015 onward with a GPU supporting OpenGL 4.3 or Vulkan will hold full speed. This is not a demanding title.</p></div>
-</details>
-
-<details>
-  <summary>Is there a Tomodachi Life PC version?</summary>
-  <div class="body"><p>No official one. Nintendo has never ported the series to PC, and the 2026 sequel, Tomodachi Life: Living the Dream, is a Nintendo Switch exclusive. Emulation is the only way to play the 3DS game on a computer.</p></div>
-</details>
-</section>
-
-<hr>
-
-<section id="legal">
-<h2>Our position on ROM files</h2>
-<p>This site is a guide, not a file host. We do not store, mirror, link to or help you find copyrighted game files, and we will not add them on request. The reason is partly legal and partly practical: ROM sites get DMCA notices, lose their domains and disappear, and the people who relied on them lose their guides too.</p>
-<p>What we do document is the legitimate chain &mdash; owning the game, backing up your own cartridge, and running that backup in open-source software. If you do not own Tomodachi Life, physical copies are still widely available second-hand.</p>
-<p>Tomodachi Life, Tomodachi Collection, Mii and Nintendo 3DS are trademarks of Nintendo. This site is unofficial and unaffiliated with Nintendo.</p>
-</section>
-
-</div>
 </main>
 
-<footer class="site">
-  <div class="wrap">
-    <p><strong>Tomodachi Life ROM</strong> &mdash; an independent guide to playing Tomodachi Life through emulation.</p>
-    <p>No game files are hosted or linked here. Unofficial and unaffiliated with Nintendo.</p>
-    <p>&copy; 2026 tomodachilife-rom.com</p>
-  </div>
-</footer>
+<script>
+/* Progressive enhancement: without JS the nav stays visible and usable. */
+document.documentElement.className += " js";
+(function () {
+  var btn = document.querySelector(".nav-toggle");
+  var nav = document.getElementById("primary-nav");
+  var mq  = window.matchMedia("(max-width:860px)");
 
-<script type="application/ld+json">
-{"@context":"https://schema.org","@graph":[
-{"@type":"WebSite","@id":"https://tomodachilife-rom.com/#website","url":"https://tomodachilife-rom.com/","name":"Tomodachi Life ROM","description":"Independent guide to playing Tomodachi Life through legal emulation.","inLanguage":"en"},
-{"@type":"Article","@id":"https://tomodachilife-rom.com/#article","isPartOf":{"@id":"https://tomodachilife-rom.com/#website"},"headline":"Tomodachi Life ROM: how to play it on PC, Mac and Android","description":"Play Tomodachi Life on PC, Mac or Android in 2026: back up your own cartridge, set up the Azahar 3DS emulator, and fix the common crashes.","datePublished":"2026-10-10","dateModified":"2026-10-10","mainEntityOfPage":"https://tomodachilife-rom.com/","inLanguage":"en","about":[{"@type":"VideoGame","name":"Tomodachi Life","gamePlatform":"Nintendo 3DS","publisher":{"@type":"Organization","name":"Nintendo"}}]},
-{"@type":"FAQPage","@id":"https://tomodachilife-rom.com/#faq","mainEntity":[
-{"@type":"Question","name":"Is downloading a Tomodachi Life ROM legal?","acceptedAnswer":{"@type":"Answer","text":"No. Tomodachi Life is still under copyright and still sold second-hand, and Nintendo has never authorised free distribution. Creating your own backup from a cartridge you own is the defensible route."}},
-{"@type":"Question","name":"Are 3DS emulators like Azahar legal?","acceptedAnswer":{"@type":"Answer","text":"Yes. Emulators are clean-room software and courts have repeatedly found them lawful. Azahar ships no Nintendo code and asks you to supply your own game files."}},
-{"@type":"Question","name":"Can I play Tomodachi Life on Android?","acceptedAnswer":{"@type":"Answer","text":"Yes. Azahar's Android build runs Tomodachi Life at full speed on most phones from the last five years. Android 10 or newer on a 64-bit device is required, and the touchscreen suits the game well."}},
-{"@type":"Question","name":"Do I need a BIOS or system files to emulate Tomodachi Life?","acceptedAnswer":{"@type":"Answer","text":"No. 3DS emulation works without system firmware for most titles, and Tomodachi Life boots without any dumped system archives."}},
-{"@type":"Question","name":"Why is Citra gone, and is Azahar safe to use?","acceptedAnswer":{"@type":"Answer","text":"Citra was discontinued in March 2024 after a lawsuit settlement over the Yuzu emulator. The community continued the open-source code as Azahar, which has shipped stable releases since March 2025 and is actively developed."}},
-{"@type":"Question","name":"Will my real 3DS save work in the emulator?","acceptedAnswer":{"@type":"Answer","text":"Yes. Dump it with JKSM or Checkpoint on the console and copy it into Azahar's save directory under the matching title ID. The region of the save and the game file must match."}},
-{"@type":"Question","name":"Can I still use QR codes to share Miis?","acceptedAnswer":{"@type":"Answer","text":"Mii QR codes work if you feed the image to the emulator rather than a camera. Camera emulation is incomplete, so point Azahar's camera input at an image file containing the QR code. StreetPass does not work, because it depends on console hardware."}},
-{"@type":"Question","name":"How much space and what hardware do I need to emulate Tomodachi Life?","acceptedAnswer":{"@type":"Answer","text":"Around 400 MB for the game plus a few hundred megabytes for the emulator and its caches. Any CPU from roughly 2015 onward with a GPU supporting OpenGL 4.3 or Vulkan will hold full speed."}},
-{"@type":"Question","name":"Is there a Tomodachi Life PC version?","acceptedAnswer":{"@type":"Answer","text":"No official one. Nintendo has never ported the series to PC, and the 2026 sequel Tomodachi Life: Living the Dream is a Nintendo Switch exclusive. Emulation is the only way to play the 3DS game on a computer."}}
-]}
-]}
+  function apply() {
+    if (mq.matches) { nav.hidden = true; btn.setAttribute("aria-expanded", "false"); }
+    else { nav.hidden = false; btn.setAttribute("aria-expanded", "false"); }
+  }
+  apply();
+  mq.addEventListener("change", apply);
+
+  btn.addEventListener("click", function () {
+    var open = btn.getAttribute("aria-expanded") === "true";
+    btn.setAttribute("aria-expanded", String(!open));
+    nav.hidden = open;
+  });
+
+  /* Close after tapping a link, and on Escape. */
+  nav.addEventListener("click", function (e) {
+    if (e.target.closest("a") && mq.matches) {
+      nav.hidden = true; btn.setAttribute("aria-expanded", "false");
+    }
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && mq.matches && !nav.hidden) {
+      nav.hidden = true; btn.setAttribute("aria-expanded", "false"); btn.focus();
+    }
+  });
+})();
 </script>
 </body>
 </html>
