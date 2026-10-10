@@ -283,6 +283,29 @@ body{
 }
 
 /* ============================================================
+   SECTION CTA
+   ============================================================ */
+.cta-block{margin:8px auto 0;text-align:center}
+.btn-cta{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--cta);color:var(--cta-text);
+  font-weight:800;font-size:1.06rem;letter-spacing:-.01em;
+  padding:16px 38px;border-radius:999px;text-decoration:none;
+  box-shadow:var(--shadow-md);
+  transition:background-color .15s,transform .12s,box-shadow .15s;
+}
+.btn-cta:hover{background:var(--cta-hover);transform:translateY(-2px)}
+.btn-cta:active{transform:translateY(0)}
+.btn-cta svg{flex:none}
+@media (max-width:540px){
+  .btn-cta{width:100%;justify-content:center;padding:15px 24px}
+}
+@media (prefers-reduced-motion:reduce){
+  .btn-cta{transition:none}
+  .btn-cta:hover{transform:none}
+}
+
+/* ============================================================
    FOOTER
    ============================================================ */
 .site-footer{position:relative;background:var(--surface-2);margin-top:90px;padding:0 0 30px}
@@ -675,7 +698,17 @@ body{
       </div>
 
     </div>
-  </section>
+  
+      <div class="cta-block">
+        <a class="btn-cta" href="https://www.nintendo.com/us/store/products/tomodachi-life-living-the-dream-switch/">
+          <svg width="17" height="17" viewBox="0 0 16 16" aria-hidden="true" fill="currentColor">
+            <path d="M8 0 9.9 5.2 15.5 5.4 11.1 8.9 12.6 14.3 8 11.1 3.4 14.3 4.9 8.9.5 5.4 6.1 5.2z"/>
+          </svg>
+          Get it Now
+        </a>
+      </div>
+
+    </section>
 
 </main>
 
