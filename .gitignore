@@ -1,0 +1,4 @@
+# Local preview stand-in. The real logo lives on the server and
+# deploy.sh never overwrites it, so committing a placeholder here
+# would publish the wrong image.
+assets/logo.webp
