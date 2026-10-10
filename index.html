@@ -195,7 +195,7 @@ body{
   background:var(--surface);border:1px solid var(--line);border-radius:16px;
   padding:24px 24px 22px;box-shadow:var(--shadow-sm);
 }
-.feature .num{
+.num{
   display:inline-grid;place-items:center;width:34px;height:34px;margin-bottom:14px;
   border-radius:10px;background:var(--brand-soft);color:var(--brand-ink);
   font-weight:800;font-size:.92rem;border:1px solid var(--line);
@@ -252,6 +252,33 @@ body{
 @media (max-width:860px){
   .loop-figure{margin-top:34px}
   .loop-shape{border-radius:30px}
+}
+
+/* ============================================================
+   MII FEATURE ROWS
+   Content one side, media the other, alternating down the page.
+   Flipping is visual only - DOM order stays content-then-media so
+   the reading and tab order never change.
+   ============================================================ */
+.mrow{
+  display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center;
+  margin:0 0 56px;
+}
+.mrow--flip .mrow-media{order:-1}
+.mrow-body .num{margin-bottom:16px}
+.mrow-body h3{font-size:clamp(1.3rem,2.7vw,1.8rem);line-height:1.2;margin:0 0 .55em}
+.mrow-body p{margin:0;font-size:1.02rem}
+.mrow-media{
+  position:relative;aspect-ratio:620/348;overflow:hidden;
+  border-radius:24px;background:var(--surface-2);
+  border:1px solid var(--line);box-shadow:var(--shadow-md);
+}
+.mrow-media video,.mrow-media img{width:100%;height:100%;object-fit:cover;display:block}
+
+@media (max-width:820px){
+  .mrow{grid-template-columns:1fr;gap:22px;margin-bottom:42px}
+  .mrow--flip .mrow-media{order:0}   /* content first on every row */
+  .mrow-media{border-radius:18px}
 }
 </style>
 </head>
@@ -364,7 +391,7 @@ body{
 
       <figure class="loop-figure">
         <div class="loop-shape">
-          <video class="loop-video"
+          <video class="lazy-video"
                  poster="/assets/island-poster.webp"
                  width="1100" height="618"
                  muted loop playsinline preload="none"
@@ -459,16 +486,27 @@ body{
            do with them &mdash; and what they will do without asking you first.</p>
       </div>
 
-      <div class="feature-grid">
-
-        <article class="feature">
+      <!-- Row 1 - content left, media right -->
+      <div class="mrow">
+        <div class="mrow-body">
           <span class="num" aria-hidden="true">1</span>
           <h3>Create them from scratch</h3>
-          <p>Build a Mii part by part, or answer a run of questions and let the game sketch
-             one for you. Set height and body type, pick a voice, tune personality traits,
-             and set their dating preferences. This entry adds face paint and parts the
-             older games never had, so pure originals work as well as lookalikes.</p>
-        </article>
+          <p>Build a Mii part by part, or answer a run of questions and let the game sketch one for you. Set height and body type, pick a voice, tune personality traits, and set their dating preferences. This entry adds face paint and parts the older games never had, so pure originals work as well as lookalikes.</p>
+        </div>
+        <div class="mrow-media">
+          <video class="lazy-video"
+                 poster="/assets/mii-scratch-poster.webp"
+                 width="620" height="348"
+                 muted loop playsinline preload="none"
+                 aria-label="Building a Mii character in the creator, cycling through face parts and hairstyles">
+            <source data-src="/assets/mii-scratch.webm" type="video/webm">
+            <source data-src="/assets/mii-scratch.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+
+      <div class="feature-grid">
+
 
         <article class="feature">
           <span class="num" aria-hidden="true">2</span>
@@ -570,29 +608,32 @@ document.documentElement.className += " js";
   });
 })();
 
-/* Looping video: nothing is fetched until it is nearly in view, and
+/* Looping videos: nothing is fetched until one is nearly in view, and
    nothing at all if the visitor asked for reduced motion - the poster
    frame stands in. */
 (function () {
-  var v = document.querySelector(".loop-video");
-  if (!v) return;
+  var vids = document.querySelectorAll(".lazy-video");
+  if (!vids.length) return;
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   if (!("IntersectionObserver" in window)) return;
 
   var io = new IntersectionObserver(function (entries) {
-    if (!entries.some(function (e) { return e.isIntersecting; })) return;
-    io.disconnect();
-    var sources = v.querySelectorAll("source[data-src]");
-    for (var i = 0; i < sources.length; i++) {
-      sources[i].src = sources[i].getAttribute("data-src");
-      sources[i].removeAttribute("data-src");
+    for (var i = 0; i < entries.length; i++) {
+      if (!entries[i].isIntersecting) continue;
+      var v = entries[i].target;
+      io.unobserve(v);
+      var sources = v.querySelectorAll("source[data-src]");
+      for (var j = 0; j < sources.length; j++) {
+        sources[j].src = sources[j].getAttribute("data-src");
+        sources[j].removeAttribute("data-src");
+      }
+      v.load();
+      var attempt = v.play();
+      if (attempt && attempt.catch) attempt.catch(function () {});
     }
-    v.load();
-    var attempt = v.play();
-    if (attempt && attempt.catch) attempt.catch(function () {});
   }, { rootMargin: "300px 0px" });
 
-  io.observe(v);
+  for (var k = 0; k < vids.length; k++) io.observe(vids[k]);
 })();
 </script>
 <script type="application/ld+json">
